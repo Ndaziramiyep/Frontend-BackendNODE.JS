@@ -3,36 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data from Database</title>
+  <title>Home Page</title>
+  <style>
+    /* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 100px 0;
+  background-color: #f4f4f4;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0;
+}
+
+.feature {
+  text-align: center;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+  </style>
 </head>
 <body>
-  <h1>Data from Database</h1>
-  <table border="1">
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Password</th>
-      <th>Address</th>
-      <th>Rule</th>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-      <!-- Add more table headers as per your database schema -->
-    </tr>
-    <% data.forEach(row => { %>
-      <tr>
-        <td><%= row.id %></td>
-        <td><%= row.name %></td>
-        <td><%= row.email %></td>
-        <td><%= row.phone %></td>
-        <td><%= row.password %></td>
-        <td><%= row.address %></td>
-        <td><%= row.rule %></td>
+  <section class="hero">
+    <h1>Welcome to Our Website</h1>
+    <p>Discover amazing things</p>
+    <a href="#" class="btn">Learn More</a>
+  </section>
 
+  <section class="features">
+    <div class="feature">
+      <h2>Feature 1</h2>
+      <p>Description of feature 1.</p>
+    </div>
+    <div class="feature">
+      <h2>Feature 2</h2>
+      <p>Description of feature 2.</p>
+    </div>
+    <div class="feature">
+      <h2>Feature 3</h2>
+      <p>Description of feature 3.</p>
+    </div>
+  </section>
 
-        <!-- Add more table cells as per your database schema -->
-      </tr>
-    <% }); %>
-  </table>
+  <footer>
+    <p>&copy; 2024 Your Website. All rights reserved.</p>
+  </footer>
 </body>
 </html>
