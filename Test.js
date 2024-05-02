@@ -24,16 +24,27 @@ const encoder = bodyParser.urlencoded();
  var password=req.body.password;
  conn.query("select * from users where email=? and password=?",[email,password],(error,result,fields)=>{
    if(result.length > 0 ){
-     res.redirect("/index.html");
+     res.redirect("dashboard");
      res.end();
    }
      else{
-       res.send("<h1>Credentials mismatch.</h1><br> Check wel to login again!")
+       res.redirect("register")
        res.end();
           }
      res.end();
     })
  });
+
+ app.post("/register", encoder, (req, res) => {
+  var username = req.body.username;
+  var email = req.body.email;
+  var phone = req.body.phone;
+  const querry = "INSERT INTO users(id, email, phone, password, address, rule) VALUES(' ','css@gmail.com','0722222222',12,'Kigali','user')";
+  conn.query(querry,(error,result,field) => {
+    if(error) throw error;
+    else res.redirect("login");
+  })
+ })
 
 // Creation of server using Https in node.js.
 // And also for today on 11/04/2024 i have learnt many in node.js to be used for frontend and backend development.
@@ -50,8 +61,11 @@ app.get("/login",(req,res)=>{
 app.get("/register",(req,res)=>{
   res.render("register.ejs");
 })
+app.get("/dashboard",(req,res)=>{
+  res.render("dashboard.ejs")
+})
 
-const port=4500;
+const port=5000;
 app.listen(port, () => {
   console.log('Server is running on http://localhost:'+port);
 });
