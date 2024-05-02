@@ -39,10 +39,10 @@ const encoder = bodyParser.urlencoded();
   var username = req.body.username;
   var email = req.body.email;
   var phone = req.body.phone;
-  const querry = "INSERT INTO users(id, email, phone, password, address, rule) VALUES(' ','css@gmail.com','0722222222',12,'Kigali','user')";
-  conn.query(querry,(error,result,field) => {
+  const querry = "INSERT INTO users(id, email, phone, password, address, rule) VALUES(' ',?,?,?,'Kigali','user')";
+  conn.query(querry,[username,email,phone],(error,result,field) => {
     if(error) throw error;
-    else res.redirect("login");
+    else res.redirect("/login");
   })
  })
 
@@ -55,14 +55,14 @@ app.get("/",(req,res)=>{
 })
 
 app.get("/login",(req,res)=>{
-  res.render("login.ejs");
+  res.sendFile(__dirname+"/login.ejs");
 })
 
 app.get("/register",(req,res)=>{
-  res.render("register.ejs");
+  res.sendFile(__dirname+"/register.ejs");
 })
 app.get("/dashboard",(req,res)=>{
-  res.render("dashboard.ejs")
+  res.sendFile(__dirname+"/dashboard.ejs")
 })
 
 const port=5000;
