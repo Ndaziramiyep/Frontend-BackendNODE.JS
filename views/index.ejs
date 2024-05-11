@@ -3,6 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+</head>
+<body>
+  <h1>To-Do List</h1>
+  <form action="/todos/week1" method="POST">
+    <input type="text" name="text" placeholder="Enter a new to-do item">
+    <button type="submit">Add</button>
+  </form>
+  <h2>Week 1 To-Do List</h2>
+  <ul>
+    <% todos.week1.forEach(todo => { %>
+      <li><%= todo.text %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Page</title>
   <style>
     /* Resetting default margin and padding */
@@ -112,4 +158,4 @@ footer {
     <p>&copy; 2024 Your Website. All rights reserved.</p>
   </footer>
 </body>
-</html>
+</html> -->
