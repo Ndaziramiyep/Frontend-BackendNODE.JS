@@ -1,9 +1,10 @@
-const mysql =require("mysql");
-const express =require("express");
+const mysql = require("mysql");
+const express = require("express");
 const router = express.Router();
 const app=express();
 const bodyParser =require("body-parser");
 const cors = require("cors");
+require("./learning");
 const encoder = bodyParser.urlencoded();
 
 // app.use(cors());
