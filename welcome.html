@@ -33,7 +33,7 @@
       let output='';
       members.forEach(
        (member)=>{
-          output+= `<li>Member id:${member.Id} Name:${member.Name} Salary:${member.Salary} Age:${member.Age}</li>`;
+          output+= `<h3>Data from Database</h3>Member Name:${member.Name} other credentials:<br><li> id:${member.Id}</li><li> Salary:${member.Salary}</li><li> Age:${member.Age}</li>`;
   });
   demo.innerHTML = output;
 
