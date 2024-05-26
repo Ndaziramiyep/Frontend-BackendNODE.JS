@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 
+const port = process.env.PORT || 5000;
+
 const app = express();
 app.get("/", (req,res) => {
     res.sendFile(path.join(__dirname,"welcome.html"))
@@ -12,6 +14,6 @@ app.get("/data/database",(req,res) => {
     ]
     res.json(members);
 })
-app.listen(3000,()=>{
-    console.log("server is running on localhost:3000");
+app.listen(port,()=>{
+    console.log(`server is running on localhost:${port}`);
 })
