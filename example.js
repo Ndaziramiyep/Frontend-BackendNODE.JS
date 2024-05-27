@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require('body-parser');
+const home = require('./middlewares/routes/home');
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -9,10 +10,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 
+app.use('/',home);
 
-app.get("/", (req,res) => {
-    res.sendFile(path.join(__dirname,"welcome.html"))
-})
 app.get("/data/database",(req,res) => {
     const members = [{Id:"001", Name:"Patrick NDAZIRAMIYE", Salary:"1M", Age:"20"},
     {Id:"002", Name:"Patrick NDAZIRAMIYE1", Salary:"2M", Age:"30"},
