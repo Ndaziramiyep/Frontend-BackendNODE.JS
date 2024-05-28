@@ -28,9 +28,20 @@ conn.connect((err) =>{
 
 
 app.use(bodyparser.urlencoded({extended: true}));
-let tasks = [];
+
 app.get('/', (req, res) => {
-    res.render('home',{tasks});
+    conn.query("select * from tasks",(error,tasks,fields)=>{
+        if(tasks.length > 0 ){
+        res.render('home',{tasks});
+          res.end();
+        }
+          else{
+            console.log("error occured!")
+            res.end();
+               }
+
+         })
+
 })
 
 app.post('/add',(req,res) =>{
@@ -52,20 +63,9 @@ app.post('/add',(req,res) =>{
         }
         else{
             console.log("insert successfully!")
-            conn.query("select * from tasks",(error,result,fields)=>{
-                if(result.length > 0 ){
-                  res.redirect("/");
-                 tasks= result;
-                  res.end();
-                }
-                  else{
-                    console.log("error occured!")
-                    res.end();
-                       }
-
-                 })
+            res.redirect("/");
         }
-    })
+})
 })
 
 app.listen(port, () =>{
