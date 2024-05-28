@@ -1,5 +1,4 @@
 const express = require("express");
-const path = require("path");
 const bodyParser = require('body-parser');
 const home = require('./middlewares/routes/home');
 
@@ -12,6 +11,7 @@ app.use(bodyParser.json());
 
 app.use('/',home);
 app.use(express.static('public'));
+app.set('view engine','ej');
 
 
 app.get("/data/database",(req,res) => {

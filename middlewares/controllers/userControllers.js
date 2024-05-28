@@ -1,5 +1,5 @@
 
 
-exports.view((req,res) =>{
-        res.sendFile(path.join(__dirname,"welcome.html"));
-})
+exports.view =(req,res) =>{
+        res.render("welcome");
+}
