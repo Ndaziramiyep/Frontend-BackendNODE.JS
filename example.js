@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 
 
 app.use('/',home);
+app.use(express.static('public'));
+
 
 app.get("/data/database",(req,res) => {
     const members = [{Id:"001", Name:"Patrick NDAZIRAMIYE", Salary:"1M", Age:"20"},
