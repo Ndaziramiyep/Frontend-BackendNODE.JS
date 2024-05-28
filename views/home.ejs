@@ -7,11 +7,22 @@
 </head>
 <body>
     <h1>Daily to do list!</h1>
-    <ul>
-        <% tasks.forEach((task)=>{ %>
-            <li><%= task %></li>
+    <table border="2">
+        <tr>
+            <th>ID</th>
+            <th>TASK</th>
+            <th>Hours</th>
+            <th>DATE</th>
+        </tr>
+        <% tasks.forEach((task1)=>{ %>
+            <tr>
+                <td><%= task1.id %></td>
+                <td><%= task1.task %></td>
+                <td><%= task1.hour %></td>
+                <td><%= task1.date %></td>
+            </tr>
         <% }) %>
-    </ul>
+    </table>
 
     <form action="/add" method="post">
         <input type="text" name="task" placeholder="Enter what to do for today">

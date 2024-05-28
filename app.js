@@ -30,7 +30,7 @@ conn.connect((err) =>{
 app.use(bodyparser.urlencoded({extended: true}));
 let tasks = [];
 app.get('/', (req, res) => {
-    res.render('home',{tasks:tasks});
+    res.render('home',{tasks});
 })
 
 app.post('/add',(req,res) =>{
@@ -44,9 +44,28 @@ app.post('/add',(req,res) =>{
 
     const time = hour+":"+mins+":"+sec;
     const fullYear = date+"/"+month+"/"+year;
-    tasks.push(newTask);
-    tasks.push(time+" "+fullYear);
-    res.redirect('/')
+    // tasks.push(newTask);
+    // tasks.push(time+" "+fullYear);
+    conn.query("INSERT INTO tasks(id,task,date,hour)VALUES(?,?,?,?)",['',newTask,fullYear,time],(err,result,field) =>{
+        if(err){
+            console.log("data not inserted!"+err)
+        }
+        else{
+            console.log("insert successfully!")
+            conn.query("select * from tasks",(error,result,fields)=>{
+                if(result.length > 0 ){
+                  res.redirect("/");
+                 tasks= result;
+                  res.end();
+                }
+                  else{
+                    console.log("error occured!")
+                    res.end();
+                       }
+
+                 })
+        }
+    })
 })
 
 app.listen(port, () =>{
