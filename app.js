@@ -4,7 +4,7 @@ const bodyparser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 5000;
-app.set('views engine', 'ejs')
+app.set('view engine', 'ejs')
 
 
 app.use(bodyparser.urlencoded({extended: true}));
@@ -14,9 +14,9 @@ app.get('/', (req, res) => {
 })
 
 app.post('/add',(req,res) =>{
-    const {task} = req.body;
-    tasks.push(task);
-    res.render('/')
+    const newTask = req.body.task;
+    tasks.push(newTask);
+    res.redirect('/')
 })
 
 app.listen(port, () =>{

@@ -8,7 +8,9 @@
 <body>
     <h1>Daily to do list!</h1>
     <ul>
-
+        <% tasks.forEach((task)=>{ %>
+            <li><%= task %></li>
+        <% }) %>
     </ul>
 
     <form action="/add" method="post">
