@@ -1,7 +1,7 @@
 const express= require("express");
 const logger = require("./middlewares/middlewareTest");
 const app = express();
-const testing = require("./register")
+const testing = require("../register")
 app.get("/", (req,res,a) =>{
     res.send("Welcome Here!")
     a();
