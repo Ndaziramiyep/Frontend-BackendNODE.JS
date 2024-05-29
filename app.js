@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const mysql = require('mysql');
+const bcrypt = require('bcrypt');
 
 
 
@@ -44,7 +45,7 @@ app.get('/', (req, res) => {
 
 })
 
-app.post('/add',(req,res) =>{
+app.post('/add', async (req,res) =>{
     const newTask = req.body.task;
     const date = new Date().getDate();
     const hour = new Date().getHours();
@@ -52,12 +53,17 @@ app.post('/add',(req,res) =>{
     const sec = new Date().getSeconds();
     const month = new Date().getMonth();
     const year = new Date().getFullYear();
-
+    const hashedTask= await bcrypt.hash(req.body.task,10);
+    try {
+        
+    } catch (error) {
+        console.log(error);
+    }
     const time = hour+":"+mins+":"+sec;
     const fullYear = date+"/"+month+"/"+year;
     // tasks.push(newTask);
     // tasks.push(time+" "+fullYear);
-    conn.query("INSERT INTO tasks(id,task,date,hour)VALUES(?,?,?,?)",['',newTask,fullYear,time],(err,result,field) =>{
+    conn.query("INSERT INTO tasks(id,task,date,hour)VALUES(?,?,?,?)",['',hashedTask,fullYear,time],(err,result,field) =>{
         if(err){
             console.log("data not inserted!"+err)
         }
