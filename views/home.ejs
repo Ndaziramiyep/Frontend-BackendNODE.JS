@@ -6,27 +6,38 @@
     <title>to do list</title>
 </head>
 <body>
-    <h1>Daily to do list!</h1>
+
     <table border="2">
         <tr>
             <th>ID</th>
-            <th>TASK</th>
-            <th>Hours</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>PHONE</th>
+            <th>ADDRESS</th>
             <th>DATE</th>
+            <th>HOUR</th>
+
         </tr>
         <% tasks.forEach((task1)=>{ %>
             <tr>
                 <td><%= task1.id %></td>
-                <td><%= task1.task %></td>
-                <td><%= task1.hour %></td>
+                <td><%= task1.name %></td>
+                <td><%= task1.email %></td>
+                <td><%= task1.phone %></td>
+                <td><%= task1.address %></td>
                 <td><%= task1.date %></td>
+                <td><%= task1.hour %></td>
             </tr>
         <% }) %>
     </table>
 
     <form action="/add" method="post">
-        <input type="text" name="task" placeholder="Enter what to do for today">
-        <button type="submit">Submit</button>
+        <input type="text" name="name" placeholder="Enter name">
+        <input type="text" name="email" placeholder="Enter email ">
+        <input type="text" name="phone" placeholder="Enter phone">
+        <input type="text" name="password" placeholder="Enter password">
+        <input type="text" name="address" placeholder="Enter address">
+        <button type="submit">Register</button>
     </form>
 </body>
 </html>

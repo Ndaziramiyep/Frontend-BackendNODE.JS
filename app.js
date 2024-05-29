@@ -31,7 +31,7 @@ conn.connect((err) =>{
 app.use(bodyparser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-    conn.query("select * from tasks",(error,tasks,fields)=>{
+    conn.query("select * from users",(error,tasks,fields)=>{
         if(tasks.length > 0 ){
         res.render('home',{tasks});
           res.end();
@@ -46,14 +46,18 @@ app.get('/', (req, res) => {
 })
 
 app.post('/add', async (req,res) =>{
-    const newTask = req.body.task;
+    const name = req.body.name;
+    const email = req.body.email;
+    const phone = req.body.phone;
+    const address = req.body.address;
+
     const date = new Date().getDate();
     const hour = new Date().getHours();
     const mins = new Date().getMinutes();
     const sec = new Date().getSeconds();
     const month = new Date().getMonth();
     const year = new Date().getFullYear();
-    const hashedTask= await bcrypt.hash(req.body.task,10);
+    const password= await bcrypt.hash(req.body.password,10);
     try {
         
     } catch (error) {
@@ -63,7 +67,7 @@ app.post('/add', async (req,res) =>{
     const fullYear = date+"/"+month+"/"+year;
     // tasks.push(newTask);
     // tasks.push(time+" "+fullYear);
-    conn.query("INSERT INTO tasks(id,task,date,hour)VALUES(?,?,?,?)",['',hashedTask,fullYear,time],(err,result,field) =>{
+    conn.query("INSERT INTO users(id,name,email,phone,password,address,date,hour,rule)VALUES(?,?,?,?,?,?,?,?,?)",['',name,email,phone,password,address,fullYear,time,' '],(err,result,field) =>{
         if(err){
             console.log("data not inserted!"+err)
         }
