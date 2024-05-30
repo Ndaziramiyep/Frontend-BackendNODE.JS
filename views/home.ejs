@@ -17,7 +17,7 @@
             <th>ADDRESS</th>
             <th>DATE</th>
             <th>HOUR</th>
-
+            <th>Action</th>
         </tr>
         <% tasks.forEach((task1)=>{ %>
             <tr>
@@ -28,6 +28,11 @@
                 <td><%= task1.address %></td>
                 <td><%= task1.date %></td>
                 <td><%= task1.hour %></td>
+                <td>
+                    <a type="button" href="">View</a>
+                    <a type="button" href="">Edit</a>
+                    <a type="button" href="">Delete</a>
+                </td>
             </tr>
         <% }) %>
     </table>
