@@ -45,6 +45,22 @@ app.get('/', (req, res) => {
 
 })
 
+app.post('/', (req, res) => {
+    const searchTerm = req.body.search;
+    conn.query("select * from users WHERE name LIKE ? OR email LIKE ? OR phone LIKE ?",['%'+searchTerm+'%','%'+searchTerm+'%','%'+searchTerm+'%'],(error,results,fields)=>{
+        if(results.length > 0 ){
+        res.render('home',{results});
+          res.end();
+        }
+          else{
+            console.log("error occured!")
+            res.end();
+               }
+
+         })
+
+})
+
 app.post('/add', async (req,res) =>{
     const name = req.body.name;
     const email = req.body.email;
