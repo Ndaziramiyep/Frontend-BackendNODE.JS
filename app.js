@@ -27,7 +27,6 @@ conn.connect((err) =>{
     }
 })
 
-
 app.use(bodyparser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
@@ -48,6 +47,37 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     const searchTerm = req.body.search;
     conn.query("select * from users WHERE name LIKE ? OR email LIKE ? OR phone LIKE ?",['%'+searchTerm+'%','%'+searchTerm+'%','%'+searchTerm+'%'],(error,results,fields)=>{
+        if(results.length > 0 ){
+        res.render('home',{results});
+          res.end();
+        }
+          else{
+            console.log("error occured!")
+            res.end();
+               }
+
+         })
+
+})
+
+app.post('/edituser/:id', (req, res) => {
+    const delId = req.params.id;
+    console.log(delId);
+    conn.query("DELETE FROM users WHERE `users`.`id` = ?",[delId],(error,results,fields)=>{
+        if(!error ){
+        res.render('home');
+          res.end();
+        }
+          else{
+            console.log("error occured!")
+            res.end();
+               }
+
+         })
+
+})
+app.get('/edituser/:id', (req, res) => {
+    conn.query("select * from users",(error,results,fields)=>{
         if(results.length > 0 ){
         res.render('home',{results});
           res.end();
@@ -93,9 +123,11 @@ app.post('/add', async (req,res) =>{
         }
 })
 })
+app.use(logger);
 
-function logger{
-    
+function logger(req,res,next){
+    console.log("The logger starting here!")
+    next();
 }
 
 app.listen(port, () =>{
