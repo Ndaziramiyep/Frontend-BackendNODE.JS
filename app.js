@@ -60,22 +60,23 @@ app.post('/', (req, res) => {
 
 })
 
-app.post('/edituser/:id', (req, res) => {
+app.post("/edituser/:id", (req, res) => {
     const delId = req.params.id;
     console.log(delId);
-    conn.query("DELETE FROM users WHERE `users`.`id` = ?",[delId],(error,results,fields)=>{
+    conn.query("UPDATE users SET rule = ? WHERE id = ?",['removed',delId],(error,results,fields)=>{
         if(!error ){
-        res.render('home');
+          conn.query("select * from users",(error,results,fields)=>{
+            if(results.length > 0 ){
+            res.render('home',{results});
           res.end();
-        }
-          else{
-            console.log("error occured!")
-            res.end();
-               }
+        }})
+          // else{
+          //   console.log("error occured!")
+          //   res.end();
+          //      }
 
-         })
-
-})
+}})
+        })
 app.get('/edituser/:id', (req, res) => {
     conn.query("select * from users",(error,results,fields)=>{
         if(results.length > 0 ){
