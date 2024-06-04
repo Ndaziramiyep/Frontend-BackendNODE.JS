@@ -65,22 +65,21 @@ app.post("/edituser/:id", (req, res) => {
     console.log(delId);
     conn.query("UPDATE users SET rule = ? WHERE id = ?",['removed',delId],(error,results,fields)=>{
         if(!error ){
-          conn.query("select * from users",(error,results,fields)=>{
-            if(results.length > 0 ){
-            res.render('home',{results});
+        res.redirect('user');
           res.end();
-        }})
-          // else{
-          //   console.log("error occured!")
-          //   res.end();
-          //      }
+        }
+          else{
+            console.log("error occured!")
+            res.end();
+               }
 
-}})
-        })
+         })
+
+})
 app.get('/edituser/:id', (req, res) => {
     conn.query("select * from users",(error,results,fields)=>{
         if(results.length > 0 ){
-        res.render('home',{results});
+        res.render('user',{results});
           res.end();
         }
           else{
