@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Crud operation</h1>
-    <form action="/" method="POST">
+    <!-- <form action="/" method="POST">
     <label>Search by Name, Phone number or Email:</label><input type="search" name="search" placeholder="type what to search here!">
     <button type="submit">Search</button>
     </form>
@@ -39,9 +39,9 @@
                 </td>
             </tr>
         <% }) %>
-    </table>
+    </table> -->
 
-    <form action="/add" method="post">
+    <form action="/edituser/<%= results.id %>" method="post">
         <input type="text" name="name" placeholder="Enter name">
         <input type="text" name="email" placeholder="Enter email ">
         <input type="text" name="phone" placeholder="Enter phone">

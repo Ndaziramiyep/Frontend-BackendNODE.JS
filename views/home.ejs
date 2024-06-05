@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>node.js Crud operation</title>
+    <style>
+        .actions{
+            display: flex;
+            position: relative;
+        }
+    </style>
 </head>
 <body>
     <h1>Crud operation</h1>
@@ -33,11 +39,15 @@
                 <td><%= result.date %></td>
                 <td><%= result.hour %></td>
                 <td>
-                    <a type="button" href="">View</a>
-                    <a type="button" href="" class="btn">Edit</a>
+                    <div class="actions">
+                        &nbsp;&nbsp;<button> <a type="button" href="">View</a></button>
+                    <form action="/edituser/<%= result.id %>" method="POST">
+                        &nbsp;&nbsp;&nbsp; <button type="submit">edit</button>
+                        </form>
                     <form action="/deleteuser/<%= result.id %>" method="POST">
-                    <button type="submit">Delete</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit">Delete</a>
                     </form>
+                </div>
                 </td>
             </tr>
         <% }) %>
