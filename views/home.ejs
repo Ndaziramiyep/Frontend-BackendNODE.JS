@@ -34,8 +34,10 @@
                 <td><%= result.hour %></td>
                 <td>
                     <a type="button" href="">View</a>
-                    <a type="button" href="/edituser/<%= result.id %>" class="btn">Edit</a>
-                    <a type="button" href="">Delete</a>
+                    <a type="button" href="" class="btn">Edit</a>
+                    <form action="/deleteuser/<%= result.id %>" method="POST">
+                    <button type="submit">Delete</a>
+                    </form>
                 </td>
             </tr>
         <% }) %>

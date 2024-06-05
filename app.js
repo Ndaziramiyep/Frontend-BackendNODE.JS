@@ -60,26 +60,13 @@ app.post('/', (req, res) => {
 
 })
 
-app.post("/edituser/:id", (req, res) => {
+app.post("/deleteuser/:id", (req, res) => {
     const delId = req.params.id;
+    delRecord(delId);
     console.log(delId);
-    conn.query("UPDATE users SET rule = ? WHERE id = ?",['removed',delId],(error,results,fields)=>{
-        if(!error ){
-        res.redirect('user');
-          res.end();
-        }
-          else{
-            console.log("error occured!")
-            res.end();
-               }
-
-         })
-
-})
-app.get('/edituser/:id', (req, res) => {
     conn.query("select * from users",(error,results,fields)=>{
         if(results.length > 0 ){
-        res.render('user',{results});
+        res.render('home',{results});
           res.end();
         }
           else{
@@ -90,6 +77,20 @@ app.get('/edituser/:id', (req, res) => {
          })
 
 })
+// app.get('/edituser/:id', (req, res) => {
+//     conn.query("select * from users",(error,results,fields)=>{
+//         if(results.length > 0 ){
+//         res.render('user',{results});
+//           res.end();
+//         }
+//           else{
+//             console.log("error occured!")
+//             res.end();
+//                }
+
+//          })
+
+// })
 
 app.post('/add', async (req,res) =>{
     const name = req.body.name;
@@ -123,11 +124,16 @@ app.post('/add', async (req,res) =>{
         }
 })
 })
-app.use(logger);
 
-function logger(req,res,next){
-    console.log("The logger starting here!")
-    next();
+function delRecord(id){
+  conn.query("DELETE * FROM users WHERE id = ?",[id],(error,results,fields)=>{
+    if(!error ){
+    console.log("Record successfully deleted!");
+    }
+      else{
+        console.log("error occured!"+error);
+           }
+     })
 }
 
 app.listen(port, () =>{
