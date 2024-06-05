@@ -126,7 +126,7 @@ app.post('/add', async (req,res) =>{
 })
 
 function delRecord(id){
-  conn.query("DELETE * FROM users WHERE id = ?",[id],(error,results,fields)=>{
+  conn.query("DELETE FROM users WHERE id = ?",[id],(error,results,fields)=>{
     if(!error ){
     console.log("Record successfully deleted!");
     }
