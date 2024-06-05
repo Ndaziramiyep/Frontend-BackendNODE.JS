@@ -77,6 +77,23 @@ app.post("/deleteuser/:id", (req, res) => {
          })
 
 })
+
+app.post("/edituser/:id", (req, res) => {
+  const editId = req.params.id;
+  conn.query("select * from users where id =?",[editId], (error,results,fields)=>{
+      if(results.length > 0 ){
+        console.log(results)
+      res.render('edituser',{results})
+        res.end();
+      }
+        else{
+          console.log("error occured!")
+          res.end();
+             }
+
+       })
+
+})
 // app.get('/edituser/:id', (req, res) => {
 //     conn.query("select * from users",(error,results,fields)=>{
 //         if(results.length > 0 ){

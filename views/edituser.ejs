@@ -7,47 +7,18 @@
 </head>
 <body>
     <h1>Crud operation</h1>
-    <!-- <form action="/" method="POST">
-    <label>Search by Name, Phone number or Email:</label><input type="search" name="search" placeholder="type what to search here!">
-    <button type="submit">Search</button>
-    </form>
-    <br/>
-    <table border="2">
-        <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>EMAIL</th>
-            <th>PHONE</th>
-            <th>ADDRESS</th>
-            <th>DATE</th>
-            <th>HOUR</th>
-            <th>Action</th>
-        </tr>
-        <% results.forEach((result)=>{ %>
-            <tr>
-                <td><%= result.id %></td>
-                <td><%= result.name %></td>
-                <td><%= result.email %></td>
-                <td><%= result.phone %></td>
-                <td><%= result.address %></td>
-                <td><%= result.date %></td>
-                <td><%= result.hour %></td>
-                <td>
-                    <a type="button" href="">View</a>
-                    <a type="button" href="/edituser/<%= result.id %>" class="btn">Edit</a>
-                    <a type="button" href="">Delete</a>
-                </td>
-            </tr>
-        <% }) %>
-    </table> -->
-
-    <form action="/edituser/<%= results.id %>" method="post">
-        <input type="text" name="name" placeholder="Enter name">
-        <input type="text" name="email" placeholder="Enter email ">
-        <input type="text" name="phone" placeholder="Enter phone">
-        <input type="text" name="password" placeholder="Enter password">
-        <input type="text" name="address" placeholder="Enter address">
+    
+    <form action="/" method="post">
+        <% results.forEach((result) => { %>
+        <p><%= result.phone %>bbbb</p>
+        <input type="text" name="name" value="<%= result.name %>" placeholder="Enter name">
+        <input type="text" name="email" value="<%= result.email %>" placeholder="Enter email ">
+        <input type="text" name="phone" value="<%= result.phone %>" placeholder="Enter phone">
+        <input type="text" name="password" value="<%= result.password %>" placeholder="Enter password">
+        <input type="text" name="address" value="<%= result.address %>" placeholder="Enter address">
         <button type="submit">Register</button>
+        <%= }); %>
     </form>
+    
 </body>
 </html>
