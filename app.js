@@ -78,28 +78,27 @@ app.post("/deleteuser/:id", (req, res) => {
 
 })
 
-app.post("/edituser/:id", (req, res) => {
-  const editId = req.params.id;
-  conn.query("select * from users where id =?",[editId], (error,results,fields)=>{
-      if(results.length > 0 ){
-        console.log(results)
-      res.render('edituser',{results})
-        res.end();
-      }
-        else{
-          console.log("error occured!")
-          res.end();
-             }
+// app.post("/edituser/:id", (req, res) => {
+//   const editId = req.params.id;
+//   conn.query("select * from users where id =?",[editId], (error,results,fields)=>{
+//       if(results.length > 0 ){
+//         console.log(results)
+//       res.render('edituser',{results})
+//         res.end();
+//       }
+//         else{
+//           console.log("error occured!")
+//           res.end();
+//              }
 
-       })
+//        })
 
-})
+// })
 app.get('/edituser/:id', (req, res) => {
     console.log("data given!")
-    const editId = req.params.id;
-  conn.query("select * from users where id =?",[editId], (error,results,fields)=>{
+  conn.query("select * from users where id =?",[req.params.id], (error,results)=>{
       if(results.length > 0 ){
-        console.log(results)
+    console.log(results)
       res.render('edituser',{results})
         res.end();
       }
@@ -109,6 +108,9 @@ app.get('/edituser/:id', (req, res) => {
              }
 })
 })
+// app.get('/edituser', (req, res) => {
+//   console.log(1)
+// })
 
 app.post('/add', async (req,res) =>{
     const name = req.body.name;

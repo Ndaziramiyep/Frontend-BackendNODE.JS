@@ -41,11 +41,11 @@
                 <td>
                     <div class="actions">
                         &nbsp;&nbsp;<button> <a type="button" href="">View</a></button>
-                    <form action="/edituser/<%= result.id %>" method="POST">
-                        &nbsp;&nbsp;&nbsp; <button type="submit">edit</button>
-                        </form>
+                        
+                        &nbsp;&nbsp;&nbsp; <a href="/edituser/<%= result.id %>" type="button">edit</a>
+
                     <form action="/deleteuser/<%= result.id %>" method="POST">
-                        &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit">Delete</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp; <button type="submit">Delete</button>
                     </form>
                 </div>
                 </td>
