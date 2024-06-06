@@ -96,6 +96,18 @@ app.post("/edituser/:id", (req, res) => {
 })
 app.get('/edituser/:id', (req, res) => {
     console.log("data given!")
+    const editId = req.params.id;
+  conn.query("select * from users where id =?",[editId], (error,results,fields)=>{
+      if(results.length > 0 ){
+        console.log(results)
+      res.render('edituser',{results})
+        res.end();
+      }
+        else{
+          console.log("error occured!")
+          res.end();
+             }
+})
 })
 
 app.post('/add', async (req,res) =>{
