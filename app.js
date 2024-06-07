@@ -78,22 +78,21 @@ app.post("/deleteuser/:id", (req, res) => {
 
 })
 
-// app.post("/edituser/:id", (req, res) => {
-//   const editId = req.params.id;
-//   conn.query("select * from users where id =?",[editId], (error,results,fields)=>{
-//       if(results.length > 0 ){
-//         console.log(results)
-//       res.render('edituser',{results})
-//         res.end();
-//       }
-//         else{
-//           console.log("error occured!")
-//           res.end();
-//              }
-
-//        })
-
-// })
+app.post("/edituser/:id", (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const address = req.body.address;
+  const id = req.body.id;
+  conn.query("update users set name = ?, email = ?, phone = ?, address = ? where id = ?", [name,email,phone,address,id], (error,results,fields)=>{
+      if(!error ){
+      res.redirect('/')
+      }  //UPDATE users SET name = ?, email = ? WHERE id = ?
+        else{
+          console.log("error occured!"+error)
+             }
+   })
+})
 app.get('/edituser/:id', (req, res) => {
   const userId = req.params.id;
   const query = 'SELECT * FROM users WHERE id = ?';
@@ -109,9 +108,7 @@ app.get('/edituser/:id', (req, res) => {
     res.render('edituser', { user: userData });
   });
 })
-// app.get('/edituser', (req, res) => {
-//   console.log(1)
-// })
+
 
 app.post('/add', async (req,res) =>{
     const name = req.body.name;
