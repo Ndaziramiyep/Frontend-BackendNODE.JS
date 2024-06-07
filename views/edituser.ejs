@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,14 +9,17 @@
     <h1>Crud operation</h1>
     
     <form action="/" method="post">
-        <p><%= results.phone %>bbbb</p>
-        <input type="text" name="name" value="<%= results.name %>" placeholder="Enter name">
-        <input type="text" name="email" value="<%= results.email %>" placeholder="Enter email ">
-        <input type="text" name="phone" value="<%= results.phone %>" placeholder="Enter phone">
-        <input type="text" name="password" value="<%= results.password %>" placeholder="Enter password">
-        <input type="text" name="address" value="<%= results.address %>" placeholder="Enter address">
+        <input type="text" name="name" value="<%= user.name %>" placeholder="Enter name">
+        <input type="text" name="email" value="<%= user.email %>" placeholder="Enter email ">
+        <input type="text" name="phone" value="<%= user.phone %>" placeholder="Enter phone">
+        <input type="text" name="address" value="<%= user.address %>" placeholder="Enter address">
+         <p>results</p>
         <button type="submit">Register</button>
     </form>
-    
+    <script>
+        fetch("/edituser/3")
+        .then(res =>  res.json)
+        .then(data => console.log(JSON.stringify(data)))
+    </script>
 </body>
 </html>

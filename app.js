@@ -95,18 +95,19 @@ app.post("/deleteuser/:id", (req, res) => {
 
 // })
 app.get('/edituser/:id', (req, res) => {
-    console.log("data given!")
-  conn.query("select * from users where id =?",[req.params.id], (error,results)=>{
-      if(results.length > 0 ){
-    console.log(results)
-      res.render('edituser',{results})
-        res.end();
-      }
-        else{
-          console.log("error occured!")
-          res.end();
-             }
-})
+  const userId = req.params.id;
+  const query = 'SELECT * FROM users WHERE id = ?';
+
+  conn.query(query, [userId], (err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    if (result.length === 0) {
+      return res.status(404).send('User not found');
+    }
+    const userData = result[0];
+    res.render('edituser', { user: userData });
+  });
 })
 // app.get('/edituser', (req, res) => {
 //   console.log(1)
