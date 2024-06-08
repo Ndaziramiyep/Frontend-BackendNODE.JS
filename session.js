@@ -27,3 +27,16 @@ app.get('/get-session', (req, res) => {
     }
 });
 
+// Route to destroy the session
+app.get('/destroy-session', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.send('Error destroying session');
+        }
+        res.send('Session destroyed');
+    });
+});
+
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
