@@ -12,14 +12,14 @@ app.use(session({
     secret: 'secret-key',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 } // 1-minute session for demo purposes
+    cookie: { maxAge: 180000 } // 3-minute session for demo purposes
 }));
 
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'example_db'
+    database: 'customers'
 });
 
 db.connect((err) => {
