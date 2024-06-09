@@ -65,6 +65,18 @@ app.post('/login', (req, res) => {
     });
 });
 
+// Render dashboard for authenticated users
+app.get('/dashboard', isAuthenticated, (req, res) => {
+    res.send(`Welcome to the dashboard, user ${req.session.userId}`);
+});
+
+// Handle logout
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) throw err;
+        res.redirect('/login');
+    });
+});
 
 
 
