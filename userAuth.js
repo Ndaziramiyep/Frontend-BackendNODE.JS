@@ -17,7 +17,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'example_db'
+    database: 'customers'
 });
 
 db.connect((err) => {
@@ -44,7 +44,7 @@ app.get('/login', (req, res) => {
 // Handle login
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
-    const query = 'SELECT * FROM users WHERE username = ?';
+    const query = 'SELECT * FROM clients WHERE username = ?';
 
     db.query(query, [username], async (err, results) => {
         if (err) throw err;
@@ -65,7 +65,7 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Render dashboard for authenticated users
+// Render dashboard for authenticated clients
 app.get('/dashboard', isAuthenticated, (req, res) => {
     res.send(`Welcome to the dashboard, user ${req.session.userId}`);
 });

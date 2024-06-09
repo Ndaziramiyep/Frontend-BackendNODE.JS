@@ -5,7 +5,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'example_db'
+    database: 'customers'
 });
 
 db.connect((err) => {
@@ -19,7 +19,7 @@ const password = 'password123';
 bcrypt.hash(password, 10, (err, hash) => {
     if (err) throw err;
     
-    const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
+    const query = 'INSERT INTO clients (username, password) VALUES (?, ?)';
     db.query(query, [username, hash], (err, result) => {
         if (err) throw err;
         console.log('User created');
