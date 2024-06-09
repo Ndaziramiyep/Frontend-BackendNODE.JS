@@ -34,6 +34,40 @@ const isAuthenticated = (req, res, next) => {
     }
 };
 
+app.set('view engine', 'ejs');
+
+// Render login form
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+// Handle login
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    const query = 'SELECT * FROM users WHERE username = ?';
+
+    db.query(query, [username], async (err, results) => {
+        if (err) throw err;
+
+        if (results.length > 0) {
+            const user = results[0];
+            const match = await bcrypt.compare(password, user.password);
+
+            if (match) {
+                req.session.userId = user.id;
+                res.redirect('/dashboard');
+            } else {
+                res.send('Invalid credentials');
+            }
+        } else {
+            res.send('User not found');
+        }
+    });
+});
+
+
+
+
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
