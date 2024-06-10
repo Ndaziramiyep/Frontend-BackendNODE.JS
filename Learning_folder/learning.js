@@ -1,7 +1,16 @@
 const express= require("express");
 const logger = require("./middlewares/middlewareTest");
 const app = express();
-const testing = require("../register")
+const testing = require("../register");
+const session = require("express-session");
+
+app.use(session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure:false}
+}));
+
 app.get("/", (req,res,a) =>{
     res.send("Welcome Here!")
     a();
@@ -9,6 +18,7 @@ app.get("/", (req,res,a) =>{
 app.use("views","ej engine");
 app.use(logger);
 app.use(testing);
+
 
 
 app.get("/users", (req,res) =>{

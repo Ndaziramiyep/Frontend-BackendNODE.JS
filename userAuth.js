@@ -12,7 +12,7 @@ app.use(session({
     secret: 'secret-key',
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 180000 } // 3-minute session for demo purposes
+    cookie: { maxAge: 180000 } // 3-minutes session for demo purposes
 }));
 
 const db = mysql.createConnection({
@@ -65,7 +65,7 @@ app.get('/login', checkCookieConsent, (req, res) => {
 
 app.post('/login', checkCookieConsent, (req, res) => {
     const { username, password } = req.body;
-    const query = 'SELECT * FROM users WHERE username = ?';
+    const query = 'SELECT * FROM clients WHERE username = ?';
 
     db.query(query, [username], async (err, results) => {
         if (err) throw err;
