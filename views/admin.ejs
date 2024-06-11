@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <h2>Active Users (<%= activeUserCount %>)</h2>
+  <ul>
+    <% for (let userId in activeUsers) { %>
+      <li><%= activeUsers[userId] %> 
+        <form action="/admin/logout" method="post" style="display: inline;">
+          <input type="hidden" name="userId" value="<%= userId %>">
+          <button type="submit">Logout</button>
+        </form>
+      </li>
+    <% } %>
+  </ul>
+  <a href="/logout">Logout as Admin</a>
+</body>
+</html>

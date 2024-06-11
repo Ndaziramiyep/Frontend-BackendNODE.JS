@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
+const bcrypt = require('bcrypt');
 
 const app = express();
 const port = 3000;
@@ -9,7 +10,7 @@ const port = 3000;
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'password',
+  password: ' ',
   database: 'customers'
 });
 
@@ -36,6 +37,21 @@ app.use((req, res, next) => {
   next();
 });
 
+// Render registration form
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+// Handle registration form submission
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  db.query('INSERT INTO clients (username, password) VALUES (?, ?)', [username, hashedPassword], (err, results) => {
+    if (err) throw err;
+    res.redirect('/login');
+  });
+});
+
 // Render login form
 app.get('/login', (req, res) => {
   res.render('login');
@@ -44,13 +60,18 @@ app.get('/login', (req, res) => {
 // Handle login form submission
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  db.query('SELECT * FROM clients WHERE username = ? AND password = ?', [username, password], (err, results) => {
+  db.query('SELECT * FROM clients WHERE username = ?', [username], async (err, results) => {
     if (err) throw err;
     if (results.length > 0) {
-      req.session.userId = results[0].id;
-      req.session.username = username;
-      activeUsers[results[0].id] = username;
-      res.redirect('/dashboard');
+      const isMatch = await bcrypt.compare(password, results[0].password);
+      if (isMatch) {
+        req.session.userId = results[0].id;
+        req.session.username = username;
+        activeUsers[results[0].id] = username;
+        res.redirect('/dashboard');
+      } else {
+        res.send('Invalid credentials');
+      }
     } else {
       res.send('Invalid credentials');
     }
