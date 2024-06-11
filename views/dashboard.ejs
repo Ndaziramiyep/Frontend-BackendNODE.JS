@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
+  <title>Dashboard</title>
 </head>
 <body>
-    <h1>Welcome, <%= username %></h1>
-    <p>Number of users currently logged in: <%= activeUsers.length %></p>
-    <h2>Active Users:</h2>
-    <ul>
-        <% activeUsers.forEach(function(user) { %>
-            <li><%= user %></li>
-        <% }) %>
-    </ul>
-    <a href="/logout">Logout</a>
+  <h1>Welcome, <%= username %>!</h1>
+  <a href="/logout">Logout</a>
 </body>
 </html>
