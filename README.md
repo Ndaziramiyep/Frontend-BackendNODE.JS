@@ -12,9 +12,7 @@ Active Session Management: Authenticated routes (e.g., dashboard) are protected 
 Logout: Session is destroyed, logging the user out and redirecting them to the login page.
 This setup covers the basics of user login, session management, and logout using Node.js, Express, and MySQL.
 
-Admin Dashboard  &
-Display the numbers of ative users and allow the admin to logout the user of his choice.
-
+Admin Dashboard  & Display the numbers of ative users and allow the admin to logout the user of his choice.
 
 # git restore
-  (use "git restore --staged <file>..." to unstage)
+  use "git restore --staged <file>..." to unstage.
