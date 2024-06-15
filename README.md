@@ -16,3 +16,8 @@ Admin Dashboard  & Display the numbers of ative users and allow the admin to log
 
 # git restore
   use "git restore --staged <file>..." to unstage.
+
+  # Axios Discription
+  If you're using Axios in a browser, you can include it via a CDN:
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
