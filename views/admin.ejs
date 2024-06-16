@@ -2,8 +2,18 @@
 <html>
 <head>
   <title>Admin Dashboard</title>
+  <style>
+    body{
+      margin:0;
+    }
+    .container{
+      background: whitesmoke;
+    }
+
+  </style>
 </head>
 <body>
+  <div class="container">
   <h1>Admin Dashboard</h1>
   <h2>Active Users (<%= activeUserCount %>)</h2>
   <ul>
@@ -17,5 +27,6 @@
     <% } %>
   </ul>
   <a href="/logout">Logout as Admin</a>
+</div>
 </body>
 </html>
